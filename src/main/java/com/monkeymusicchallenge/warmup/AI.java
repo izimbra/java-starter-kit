@@ -120,25 +120,20 @@ public class AI {
   
   
   private String direction(JSONArray layout, JSONArray monkey) {
-	this.layout = getLayout(layout); // Now we have information of the layout
-	String dir = nextDir();
-	return dir;
+	createLayout(layout); // Now we have information of the layout
+	return nextDir();
   }
   
   // measures the size of the matrix and takes out values from 
   // this method assumes that the layout is regular. Maybe we should implement an irregular matrix?
-  private int[][] getLayout(JSONArray layout) {
+  private void createLayout(JSONArray layout) {
     if (this.layout == null) {
       // calculate the matrix values (empty, music and user)
-      return null;
-    } else {
-      // can we do this? Maybe the layout changes for each turn?
-      return this.layout;
-    }
+    } 
   }
   
   // Calculates the next best direction to walk according to layout...
-  private String nextDir(int[][] layout) {
+  private String nextDir() {
 	// TODO: do something smart...
 	return null;
   }
