@@ -20,25 +20,8 @@ public class Graph {
         }
     }
 
-    // Converts node coordinates to index
-    public int xyToInd(int x, int y) {
-
-    }
-
     public void addEdge(int v, int w) {
 
     }
 
-    /**
-     * Helper class
-     * Graph vertex with 2D coordinates
-     */
-    private static class Node {
-        private int x, y;
-        private int kind;
-
-        public Node (int x, int y, int kind) {
-
-        }
-    }
 }

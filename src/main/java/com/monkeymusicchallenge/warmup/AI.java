@@ -7,8 +7,7 @@ import org.json.JSONObject;
 
 public class AI {
 
-  // -1: wall, 0: empty, 1: music (song, album, playlist), 2: monkey, 3: user
-  private int[][] layout = null;
+
   
  /* private class Monkey {
     static int x; static int y;
@@ -113,54 +112,15 @@ public class AI {
         .getJSONArray(currentPositionOfMonkey.getInt(0))
         .getString(currentPositionOfMonkey.getInt(1));
 
-    createLayout(currentLevelLayout);
+    //createLayout(currentLevelLayout);
     // TODO: You may want to do something smarter here
     return this.randomDirection();
     // return this.direction(currentLevelLayout, currentPositionOfMonkey);
   }
   
-  
   private String direction(JSONArray layout, JSONArray monkey) {
-	createLayout(layout); // Now we have information of the layout
+	LayoutManager.createLayout(layout); // Now we have information of the layout
 	return nextDir();
-  }
-  
-  // measures the size of the matrix and takes out values from 
-  // this method assumes that the layout is regular. Maybe we should implement an irregular matrix?
-  private void createLayout(JSONArray layout) {
-    if (this.layout == null) {
-      // calculate the matrix values (wall, empty, music and user)
-      int rows = layout.length();
-      int cols = layout.getJSONArray(0).length();
-      this.layout = new int[rows][cols];
-      for (int i = 0; i < rows; ++i) { // rows
-        for (int j = 0; j < cols; ++j) { // cols
-          String item = layout.getJSONArray(i).optString(j);
-          this.layout[i][j] = itemToInt(item);
-        }
-      }
-      for (int i = 0; i < rows; ++i) { // rows
-        for (int j = 0; j < cols; ++j) { // cols
-          System.out.print(this.layout[i][j] + " ");
-        }
-        System.out.println("");
-      }
-    }
-  }
-  
-  // -1: wall, 0: empty, 1: music, 2: monkey, 3: user
-  private int itemToInt(String str) {
-	int value = 0;
-    switch (str) {
-      case "wall":     value = -1; break;
-      case "empty":    value = 0;  break;
-      case "album":    value = 1;  break;
-      case "song":     value = 1;  break;
-      case "playlist": value = 1;  break;
-      case "monkey":   value = 2;  break;
-      case "user":     value = 3;  break;           
-    }
-    return value;
   }
   
   // Calculates the next best direction to walk according to layout...
