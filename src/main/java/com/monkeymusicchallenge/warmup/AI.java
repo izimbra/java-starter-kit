@@ -7,6 +7,13 @@ import org.json.JSONObject;
 
 public class AI {
 
+  // 0: empty, 1: music (song, album, playlist), 2: user
+  private int[][] layout = null;
+  
+  private class Monkey {
+    static int x; static int y;
+  }
+    
   public String move(final JSONObject gameState) {
 
     // Every game has a limited number of turns. Use every turn wisely!
@@ -108,6 +115,32 @@ public class AI {
 
     // TODO: You may want to do something smarter here
     return this.randomDirection();
+    // return this.direction(currentLevelLayout, currentPositionOfMonkey);
+  }
+  
+  
+  private String direction(JSONArray layout, JSONArray monkey) {
+	this.layout = getLayout(layout); // Now we have information of the layout
+	String dir = nextDir();
+	return dir;
+  }
+  
+  // measures the size of the matrix and takes out values from 
+  // this method assumes that the layout is regular. Maybe we should implement an irregular matrix?
+  private int[][] getLayout(JSONArray layout) {
+    if (this.layout == null) {
+      // calculate the matrix values (empty, music and user)
+      return null;
+    } else {
+      // can we do this? Maybe the layout changes for each turn?
+      return this.layout;
+    }
+  }
+  
+  // Calculates the next best direction to walk according to layout...
+  private String nextDir(int[][] layout) {
+	// TODO: do something smart...
+	return null;
   }
 
   private String randomDirection() {
