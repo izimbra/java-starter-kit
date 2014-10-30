@@ -8,27 +8,35 @@ public class LayoutManager {
 	private static int[][] layout = null;
 	private static Node[] adjacencyArray = null;
 	
+	private static int rows = 0, cols = 0;
+	
 	public static void createLayout(JSONArray jsonLayout) {
 		if (layout == null) {
 			// calculate the matrix values (wall, empty, music and user)
-			int rows = jsonLayout.length();
-			int cols = jsonLayout.getJSONArray(0).length();
+			rows = jsonLayout.length();
+			cols = jsonLayout.getJSONArray(0).length();
+			// create layout matrix
 			layout = new int[rows][cols];
-			for (int i = 0; i < rows; ++i) { // rows
-				for (int j = 0; j < cols; ++j) { // cols
+			for (int i = 0; i < rows; ++i) {
+				for (int j = 0; j < cols; ++j) {
 					String item = jsonLayout.getJSONArray(i).optString(j);
 					layout[i][j] = itemToInt(item);
 				}
 			}
-			adjacencyArray = new int[rows*cols];
-			for (int i = 0; i < rows; ++i) { // rows
-				for (int j = 0; j < cols; ++j) { // cols
-					String item = jsonLayout.getJSONArray(i).optString(j);
-					adjacencyArray[i+j] = itemToInt(item);
-				}
-			}
-			
+			createAdjacencyArray();
 		}
+	}
+
+	private static void createAdjacencyArray() {
+		// create adjacency Array
+		adjacencyArray = new Node[rows*cols];
+		for (int i = 0; i < rows; ++i) {
+			for (int j = 0; j < cols; ++j) {
+				Node node = new Node(i, j, layout[i][j]);
+				
+				adjacencyArray[xyToInd(i,j)] = node;
+			}
+		}		
 	}
 
 	// -1: wall, 0: empty, 1: music, 2: monkey, 3: user
@@ -47,7 +55,7 @@ public class LayoutManager {
 	}	
 	
     // Converts node coordinates to index
-    public int xyToInd(int x, int y) {
-    	return 0;
+    public static int xyToInd(int x, int y) {
+    	return (x*cols)+y;
     }
 }
