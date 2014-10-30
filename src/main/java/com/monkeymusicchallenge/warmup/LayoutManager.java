@@ -33,7 +33,6 @@ public class LayoutManager {
 		for (int i = 0; i < rows; ++i) {
 			for (int j = 0; j < cols; ++j) {
 				Node node = new Node(i, j, layout[i][j]);
-				
 				adjacencyArray[xyToInd(i,j)] = node;
 			}
 		}		
