@@ -10,7 +10,7 @@ import java.util.LinkedList;
  */
 public class Graph {
     private final int nrOfVertices; // no. vertices
-    private int E; // no. edges
+    private int nrOfEdges; // no. edges
     private TypedNode[] nodes; // nodes of the graph
     private LinkedList<Integer> adj[];
 
@@ -33,7 +33,7 @@ public class Graph {
             throw new NullPointerException("Node not initialised");
         } else {
             adj[v].add(w);
-            E++;
+            nrOfEdges++;
         }
     }
     
@@ -44,4 +44,13 @@ public class Graph {
     public TypedNode[] getNodes() {
     	return nodes;
     }
+
+    // No. vertices in the graph
+    public int nrOfVertices() { return nrOfVertices; }
+
+    // Adjacency list of i-th node
+    public LinkedList<Integer> adj(int i) {
+        return adj[i];
+    }
+
 }
