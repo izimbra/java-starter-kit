@@ -27,12 +27,8 @@ public class Graph {
 
     // Adds an edge between two nodes
     public void addEdge(int v, int w) {
-        if (nodes[v] == null || nodes[w] == null) {
-            throw new NullPointerException("Node not initialised");
-        } else {
             adj[v].add(w);
             nrOfEdges++;
-        }
     }
     
     public TypedNode getNode(int i) { return nodes[i]; }
