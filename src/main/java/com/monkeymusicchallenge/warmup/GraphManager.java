@@ -2,11 +2,11 @@ package com.monkeymusicchallenge.warmup;
 
 import org.json.JSONArray;
 
-public class LayoutManager {
+public class GraphManager {
 
 	// -1: wall, 0: empty, 1: music (song, album, playlist), 2: monkey, 3: user
 	private static int[][] layout = null;
-	private static Node[] adjacencyArray = null;
+	private static Graph graph = null;
 	
 	private static int rows = 0, cols = 0;
 	
@@ -23,19 +23,17 @@ public class LayoutManager {
 					layout[i][j] = itemToInt(item);
 				}
 			}
-			createAdjacencyArray();
+			createGraph();
 		}
 	}
 
-	private static void createAdjacencyArray() {
-		// create adjacency Array
-		adjacencyArray = new Node[rows*cols];
+	private static void createGraph() {
+		graph = new Graph(rows*cols);
 		for (int i = 0; i < rows; ++i) {
 			for (int j = 0; j < cols; ++j) {
-				Node node = new Node(i, j, layout[i][j]);
-				adjacencyArray[xyToInd(i,j)] = node;
+				graph.addNode(xyToInd(i,j), new TypedNode(i, j, layout[i][j]));
 			}
-		}		
+		}
 	}
 
 	// -1: wall, 0: empty, 1: music, 2: monkey, 3: user
@@ -54,7 +52,7 @@ public class LayoutManager {
 	}	
 	
     // Converts node coordinates to index
-    public static int xyToInd(int x, int y) {
+    private static int xyToInd(int x, int y) {
     	return (x*cols)+y;
     }
 }
