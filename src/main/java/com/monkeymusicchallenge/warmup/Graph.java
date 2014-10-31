@@ -29,12 +29,20 @@ public class Graph {
 
     // Adds an edge between two nodes
     public void addEdge(int v, int w) {
-        if (nodes[v] == null | nodes [w] == null)
+        if (nodes[v] == null | nodes[w] == null)
             throw new NullPointerException("Node not initialised");
         else {
             adj[v].add(w);
             E++;
         }
+    }
+
+    // No. vertices in the graph
+    public int V() { return V; }
+
+    // Adjacency list of i-th node
+    public LinkedList<Integer> adj(int i) {
+        return adj[i];
     }
 
 }
