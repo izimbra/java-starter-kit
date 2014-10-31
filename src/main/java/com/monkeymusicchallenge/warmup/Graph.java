@@ -22,11 +22,6 @@ public class Graph {
             a = new LinkedList<Integer>();
     }
 
-/*    // Converts node coordinates to index
-    public int xyToInd(int x, int y) {
-
-    }*/
-
     // Add or update i-th node of the graph
     public void addNode(int i, TypedNode n) {
         nodes[i] = n;

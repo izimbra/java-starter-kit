@@ -7,12 +7,11 @@ import org.json.JSONObject;
 
 public class AI {
 
-  // 0: empty, 1: music (song, album, playlist), 2: user
-  private int[][] layout = null;
+
   
-  private class Monkey {
+ /* private class Monkey {
     static int x; static int y;
-  }
+  }*/
     
   public String move(final JSONObject gameState) {
 
@@ -113,23 +112,15 @@ public class AI {
         .getJSONArray(currentPositionOfMonkey.getInt(0))
         .getString(currentPositionOfMonkey.getInt(1));
 
+    //createLayout(currentLevelLayout);
     // TODO: You may want to do something smarter here
     return this.randomDirection();
     // return this.direction(currentLevelLayout, currentPositionOfMonkey);
   }
   
-  
   private String direction(JSONArray layout, JSONArray monkey) {
-	createLayout(layout); // Now we have information of the layout
+	LayoutManager.createLayout(layout); // Now we have information of the layout
 	return nextDir();
-  }
-  
-  // measures the size of the matrix and takes out values from 
-  // this method assumes that the layout is regular. Maybe we should implement an irregular matrix?
-  private void createLayout(JSONArray layout) {
-    if (this.layout == null) {
-      // calculate the matrix values (empty, music and user)
-    } 
   }
   
   // Calculates the next best direction to walk according to layout...
