@@ -9,7 +9,6 @@ public class GraphManager {
 
 	// -1: wall, 0: empty, 1: music (song, album, playlist), 2: monkey, 3: user
 	private static int[][] layout = null;
-
 	private static int rows = 0, cols = 0;
 
     /**
@@ -18,7 +17,6 @@ public class GraphManager {
      * @param jsonLayout
      */
 	public static Graph createGraph(JSONArray jsonLayout) {
-//        Graph graph;
 
         // Helper class with helper methods
         class Helper {
@@ -99,7 +97,6 @@ public class GraphManager {
             return h.populateGraph();
 		}
         return null;
-
 	}
 
     /**
