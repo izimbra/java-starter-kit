@@ -1,7 +1,11 @@
-package com.monkeymusicchallenge.warmup;
+package com.mokeymusicchallenge.warmup.test;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import com.monkeymusicchallenge.warmup.Dijkstra;
+import com.monkeymusicchallenge.warmup.Graph;
+
 import static org.junit.Assert.*;
 
 public class DijkstraTest {
