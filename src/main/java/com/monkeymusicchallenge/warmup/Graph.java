@@ -14,7 +14,7 @@ public class Graph {
     private TypedNode[] nodes; // nodes of the graph
     private LinkedList<Integer>[] adj;
 
-    public Graph(int nov) {
+    public Graph(int nov) { // nov = number of vertices
         nrOfVertices = nov;
         nodes = new TypedNode[nov];
 
@@ -33,7 +33,9 @@ public class Graph {
         nrOfEdges++;
    }
     
-    public TypedNode getNode(int i) { return nodes[i]; }
+    public TypedNode getNode(int i) {
+    	return (0 >= i && i < nrOfVertices) ? nodes[i] : null;
+    }
     
     public TypedNode[] getNodes() { return nodes; }
 
