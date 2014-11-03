@@ -25,30 +25,22 @@ public class Graph {
     }
 
     // Add or update i-th node of the graph
-    public void addNode(int i, TypedNode n) {
-        nodes[i] = n;
-    }
+    public void addNode(int i, TypedNode n) { nodes[i] = n; }
 
     // Adds an edge between two nodes
     public void addEdge(int v, int w) {
         adj[v].add(w);
         nrOfEdges++;
-    }
+   }
     
-    public TypedNode getNode(int i) {
-    	return nodes[i];
-    }
+    public TypedNode getNode(int i) { return nodes[i]; }
     
-    public TypedNode[] getNodes() {
-    	return nodes;
-    }
+    public TypedNode[] getNodes() { return nodes; }
 
     // No. vertices in the graph
     public int nrOfVertices() { return nrOfVertices; }
 
     // Adjacency list of i-th node
-    public LinkedList<Integer> adj(int i) {
-        return adj[i];
-    }
+    public LinkedList<Integer> adj(int i) { return adj[i]; }
 
 }
