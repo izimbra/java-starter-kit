@@ -22,7 +22,7 @@ public class GraphManager {
      * @param jsonLayout
      */
 	public static Graph createGraph(JSONArray jsonLayout) {
-        
+
         // Helper class with helper methods
         class Helper {
             private Graph graph;
@@ -117,7 +117,7 @@ public class GraphManager {
         for (TypedNode n : g1.getNodes())
             if (objects.contains(n.getType()))
                 ns.add(n);
-        // set nodes of g2 to be O, re-index?
+        // set nodes of g2 to be O, new indices
         g2 = new EdgeWeightedGraph(ns.size());
         int v = 0;
         for (TypedNode n : ns)
