@@ -10,7 +10,7 @@ public class GraphManager {
 	
 	private static int rows = 0, cols = 0;
 	
-	public static void createLayout(JSONArray jsonLayout) {
+	public static void createGraph(JSONArray jsonLayout) {
 		if (layout == null) {
 			// calculate the matrix values (wall, empty, music and user)
 			rows = jsonLayout.length();
@@ -27,6 +27,7 @@ public class GraphManager {
 		}
 	}
 
+	// helper method
 	private static void createGraph() {
 		graph = new Graph(rows*cols);
 		for (int i = 0; i < rows; ++i) {

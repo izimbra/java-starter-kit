@@ -27,8 +27,8 @@ public class Graph {
 
     // Adds an edge between two nodes
     public void addEdge(int v, int w) {
-            adj[v].add(w);
-            nrOfEdges++;
+    	adj[v].add(w);
+    	nrOfEdges++;
     }
     
     public TypedNode getNode(int i) { return nodes[i]; }
