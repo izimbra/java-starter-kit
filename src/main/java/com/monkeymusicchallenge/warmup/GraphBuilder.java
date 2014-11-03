@@ -5,8 +5,9 @@ public class GraphBuilder {
 	private Graph graph;
 	private static int rows = 0, cols = 0;
 
-	GraphBuilder(int r, int c) {
-		rows = r; cols = c;
+	public GraphBuilder(int r, int c) {
+		rows = r; 
+		cols = c;
 		this.graph = new Graph(rows*cols);
 	}
 
@@ -31,22 +32,33 @@ public class GraphBuilder {
 		for (TypedNode n : neighbours) {
 			if(n != null && n.getType() != -1) { // outside matrix or wall
 				neighbourIndex = xyToGraphIndex(n.getX(), n.getY());
-			graph.addEdge(gindex, neighbourIndex);
+				graph.addEdge(gindex, neighbourIndex);
 			}
 		}
 	}
 	
 	private TypedNode[] getNeighbours(int x, int y) {
 		TypedNode[] neighbours = new TypedNode[4];
-		neighbours[0] = graph.getNode(xyToGraphIndex(x,   y-1)); // left
-		neighbours[1] = graph.getNode(xyToGraphIndex(x-1, y));   // upper
-		neighbours[2] = graph.getNode(xyToGraphIndex(x,   y+1)); // right
-		neighbours[3] = graph.getNode(xyToGraphIndex(x+1, y));   // lower
+		try {
+			neighbours[0] = graph.getNode(xyToGraphIndex(x,   y-1)); // left
+			neighbours[1] = graph.getNode(xyToGraphIndex(x-1, y));   // upper
+			neighbours[2] = graph.getNode(xyToGraphIndex(x,   y+1)); // right
+			neighbours[3] = graph.getNode(xyToGraphIndex(x+1, y));   // lower
+		} catch (ArrayIndexOutOfBoundsException e) {
+			for(TypedNode n : neighbours) {
+				if( n != null)
+					System.out.println(" n.x: " + n.getX() + " n.y: " + n.getY() + " type: " + n.getType());
+			}	
+			System.out.println("Index out of bounds x: " + x + " y: " + y);
+		}
 		return neighbours;
 	}
 
     // Converts node coordinates to index
     public static int xyToGraphIndex(int x, int y) {
-    	return (y*cols)+x;
+    	//if(x >= 0 && x < rows && y >= 0 && y < cols)
+    	return (x*cols)+y;
+    	//else
+    	//	return -1;
     }
 }

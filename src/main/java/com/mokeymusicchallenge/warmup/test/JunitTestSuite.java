@@ -5,6 +5,9 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-   GraphManagerTest.class
+   GraphManagerTest.class,
+   GraphTest.class,
+   GraphBuilderTest.class,
+   DijkstraTest.class
 })
 public class JunitTestSuite { }  	
