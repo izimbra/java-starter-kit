@@ -24,13 +24,15 @@ public class Dijkstra {
         // initialise distance and path arrays, and PQ
         distTo = new int[V];
         pathTo = (LinkedList<Integer>[]) new LinkedList[V];
+        for (int v = 0; v < V; v++)
+            pathTo[v] = new LinkedList<Integer>();
         pq = new IndexMinPQ<Integer>(V);
 
-        // initialise all distances to infinity, except for soure
-        for (int i : distTo)
+        // initialise all distances to infinity, except for source
+        for (int i = 0; i < V; i++)
             distTo[i] = Integer.MAX_VALUE; //XXX risky, is actually a value
         distTo[s] = 0;
-        //????pathTo[s] = null;
+        pathTo[s].add(0);
 
         // add source to PQ
         pq.insert(s, 0);
@@ -43,9 +45,9 @@ public class Dijkstra {
         for (int w : g.adj(v)) {
             if (distTo[w] > distTo[v] + 1) {
                 distTo[w] = distTo[v] + 1; // unit-weight edges
-                // s-w path = s-v path + v
-                pathTo[w] = pathTo[v];
-                pathTo[w].add(v);
+                // s-w path = s-v path + w
+                pathTo[w].addAll(pathTo[v]);
+                pathTo[w].add(w);
                 // update
                 if (pq.contains(w)) pq.changeKey(w, distTo[w]);
                 else                pq.insert(w, distTo[w]);
@@ -55,12 +57,16 @@ public class Dijkstra {
 
     // Getters
 
-    public LinkedList<Integer>[] getPathTo() {
-        return pathTo;
+    public LinkedList<Integer> getPathTo(int v) {
+        return pathTo[v];
     }
 
-    public int[] getDistTo() {
+    public int[] getDistances() {
         return distTo;
+    }
+
+    public int getDistTo(int v) {
+        return distTo[v];
     }
 
 }
