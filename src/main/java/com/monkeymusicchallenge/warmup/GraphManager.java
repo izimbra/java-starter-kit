@@ -2,10 +2,15 @@ package com.monkeymusicchallenge.warmup;
 
 import org.json.JSONArray;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 public class GraphManager {
 
-   // private static Graph graph;
-   // private static WeightedEdgeGraph g;
+    public static final int MUSIC  = 1;
+    public static final int MONKEY = 2;
+    public static final int USER   = 3;
 
 	// -1: wall, 0: empty, 1: music (song, album, playlist), 2: monkey, 3: user
 	private static int[][] layout = null;
@@ -17,7 +22,7 @@ public class GraphManager {
      * from JSON game layout
      * @param jsonLayout
      */
-	public static Graph createGraph(JSONArray jsonLayout) {
+	private static Graph createGraph(JSONArray jsonLayout) {
 //        Graph graph;
 
         // Helper class with helper methods
@@ -70,11 +75,11 @@ public class GraphManager {
                 switch (str) {
                     case "wall":     value = -1; break;
                     case "empty":    value = 0;  break;
-                    case "album":    value = 1;  break;
-                    case "song":     value = 1;  break;
-                    case "playlist": value = 1;  break;
-                    case "monkey":   value = 2;  break;
-                    case "user":     value = 3;  break;
+                    case "album":    value = MUSIC;  break;
+                    case "song":     value = MUSIC;  break;
+                    case "playlist": value = MUSIC;  break;
+                    case "monkey":   value = MONKEY;  break;
+                    case "user":     value = USER;  break;
                 }
                 return value;
             }
@@ -103,14 +108,28 @@ public class GraphManager {
 	}
 
     /**
-     * Create graph with distances between game objects
+     * Create edge-weighted graph with distances between game objects
      */
-    public static void createObjectGraph() {
+    public static EdgeWeightedGraph createObjectGraph(JSONArray jsonLayout) {
+        Graph g1 = createGraph(jsonLayout);
+        EdgeWeightedGraph g2;
 
+        // find O - game objects in g1
+        List<Integer> objects = Arrays.asList(new Integer[] {MUSIC, MONKEY, USER});
+        LinkedList<TypedNode> ns = new LinkedList<TypedNode>();
+        for (TypedNode n : g1.getNodes())
+            if (objects.contains(n.getType()))
+                ns.add(n);
+        // set nodes of g2 to be O, re-index?
+        g2 = new EdgeWeightedGraph(ns.size());
+        int v = 0;
+        for (TypedNode n : ns)
+            g2.addNode(v++, n);
+        // run Dijkstra on all pairs in O
+        // create edges between objects
+        // add edges to g2
+        return g2;
     }
-
-	// helper method
-
 	
     // Converts node coordinates to index
     private static int xyToGraphIndex(int x, int y) {

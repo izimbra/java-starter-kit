@@ -37,6 +37,13 @@ public class Graph {
     
     public TypedNode[] getNodes() { return nodes; }
 
+    public int whichNode(TypedNode n) {
+        int v = 0;
+        while (!nodes[v].equals(n))
+            v++;
+        return v;
+    }
+
     // No. vertices in the graph
     public int nrOfVertices() { return nrOfVertices; }
 
