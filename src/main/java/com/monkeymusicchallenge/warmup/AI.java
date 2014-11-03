@@ -135,7 +135,6 @@ public class AI {
 
     public void initGraph(int noNodes) {
         Graph g = new Graph(noNodes);
-
     }
 
 }

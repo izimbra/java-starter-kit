@@ -16,15 +16,21 @@ public class GraphManagerTest {
 	JSONArray jsonLayout;
 	
 	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-		
+	public void setUp() throws Exception {
+		// creates the layout returned by server
+		jsonLayout = new JSONArray();
+		jsonLayout.add(new JSONArray(Arrays.asList("user", "empty", "empty", "empty", "empty", "empty")));
+		jsonLayout.add(new JSONArray(Arrays.asList("playlist", "empty", "empty", "wall", "wall", "empty")));
+		jsonLayout.add(new JSONArray(Arrays.asList("wall", "wall", "wall", "album", "empty", "empty")));
+		jsonLayout.add(new JSONArray(Arrays.asList("empty", "empty", "empty", "wall", "empty", "song")));
+		jsonLayout.add(new JSONArray(Arrays.asList("empty", "wall", "empty", "empty", "empty", "wall")));
+		jsonLayout.add(new JSONArray(Arrays.asList("monkey", "wall", "song", "wall", "empty", "playlist")));
 	}
 
 	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-		
+	public void tearDown() throws Exception {
+		jsonLayout = null;
 	}
-	
 	
 	@Test
 	public void testCreateLayout() 
