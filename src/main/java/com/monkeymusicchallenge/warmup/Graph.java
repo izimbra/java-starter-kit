@@ -39,6 +39,7 @@ public class Graph {
     
     public TypedNode[] getNodes() { return nodes; }
 
+    // Index of a node
     public int whichNode(TypedNode n) {
         int v = 0;
         while (!nodes[v].equals(n))
