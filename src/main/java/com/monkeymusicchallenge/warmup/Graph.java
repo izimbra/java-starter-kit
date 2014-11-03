@@ -12,14 +12,16 @@ public class Graph {
     private final int nrOfVertices; // no. vertices
     private int nrOfEdges; // no. edges
     private TypedNode[] nodes; // nodes of the graph
-    private LinkedList<Integer> adj[];
+    private LinkedList<Integer>[] adj;
 
     public Graph(int nov) {
-        this.nrOfVertices = nov;
+        nrOfVertices = nov;
         nodes = new TypedNode[nov];
+
         adj = (LinkedList<Integer>[]) new LinkedList[nov];
-        for (LinkedList<Integer> a : adj)
-            a = new LinkedList<Integer>();
+
+        for (int v = 0; v < nrOfVertices; v++)
+            adj[v] = new LinkedList<Integer>();
     }
 
     // Add or update i-th node of the graph
@@ -27,9 +29,9 @@ public class Graph {
 
     // Adds an edge between two nodes
     public void addEdge(int v, int w) {
-    	adj[v].add(w);
-    	nrOfEdges++;
-    }
+        adj[v].add(w);
+        nrOfEdges++;
+   }
     
     public TypedNode getNode(int i) { return nodes[i]; }
     
