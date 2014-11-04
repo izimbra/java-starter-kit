@@ -1,4 +1,4 @@
-package com.mokeymusicchallenge.warmup.test;
+package com.monkeymusicchallenge.warmup.test;
 
 import java.util.LinkedList;
 

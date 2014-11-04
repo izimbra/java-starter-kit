@@ -1,4 +1,4 @@
-package com.mokeymusicchallenge.warmup.test;
+package com.monkeymusicchallenge.warmup.test;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -45,7 +45,7 @@ public class DijkstraTest {
         d = new Dijkstra(g, 1);
 
         assertEquals(1, d.getDistTo(0));
-        assertArrayEquals(new Integer[] {1,0}, d.getPathTo(0).toArray());
+        assertArrayEquals(new Integer[]{1, 0}, d.getPathTo(0).toArray());
         assertEquals(0, d.getDistTo(1));
         assertArrayEquals(new Integer[] {1}, d.getPathTo(1).toArray());
         assertEquals(1, d.getDistTo(2));

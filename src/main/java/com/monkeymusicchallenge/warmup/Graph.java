@@ -4,9 +4,8 @@ import java.util.LinkedList;
 
 
 /**
- * Created by izimbra on 30/10/14.
- * Rip-off of Sedgewick & Wayne's (2011, p.526) Graph class
- * Uses adjacency lists to represent
+ * Rip-off of Sedgewick & Wayne's (2011, p.526) undirected Graph class
+ * Uses adjacency lists for storing edge information
  */
 public class Graph {
     private final int nrOfVertices; // no. vertices
@@ -30,6 +29,7 @@ public class Graph {
     // Adds an edge between two nodes
     public void addEdge(int v, int w) {
         adj[v].add(w);
+        adj[w].add(v);
         nrOfEdges++;
    }
     

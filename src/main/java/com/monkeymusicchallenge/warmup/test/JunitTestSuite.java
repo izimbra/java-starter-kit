@@ -1,4 +1,4 @@
-package com.mokeymusicchallenge.warmup.test;
+package com.monkeymusicchallenge.warmup.test;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -10,4 +10,4 @@ import org.junit.runners.Suite;
    GraphBuilderTest.class,
    DijkstraTest.class
 })
-public class TestSuite { }  	
+public class JunitTestSuite { }  	
