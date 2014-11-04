@@ -42,7 +42,7 @@ public class Graph {
     // Index of a node
     public int whichNode(TypedNode n) {
         int v = 0;
-        while (!nodes[v].equals(n))
+        while (!nodes[v].equals(n) && v < nrOfVertices)
             v++;
         return v;
     }

@@ -8,19 +8,11 @@ import java.util.List;
 
 public class GraphManager {
 
-    public static final int WALL   = -1;
-    public static final int EMPTY  = 0;  
-    public static final int MUSIC  = 1;
-    public static final int MONKEY = 2;
-    public static final int USER   = 3;
-
     /**
-     * Create initial graph with unit edges
-     * from JSON game layout
+     * Create initial graph with unit edges from JSON game layout
      * @param jsonLayout
      */
 	public static Graph createGraph(JSONArray jsonLayout) {
-        // -1: wall, 0: empty, 1: music (song, album, playlist), 2: monkey, 3: user
         int[][] layout = null;
 
         if (jsonLayout.length() != 0) {
@@ -39,9 +31,9 @@ public class GraphManager {
 				}
 			}
             return builder.populateGraph(layout);
-		}
-        else
+		} else {
             return null;
+		}
 	}
 
     /**
@@ -51,7 +43,7 @@ public class GraphManager {
         EdgeWeightedGraph g2;
 
         // find O - game objects in g1
-        List<Integer> objects = Arrays.asList(new Integer[] { MUSIC, MONKEY, USER });
+        List<Integer> objects = Arrays.asList(new Integer[] { Types.MUSIC, Types.MONKEY, Types.USER });
         LinkedList<TypedNode> ns = new LinkedList<TypedNode>();
         for (TypedNode n : g1.getNodes())
             if (objects.contains(n.getType()))
@@ -86,15 +78,19 @@ public class GraphManager {
 	public static int itemToInt(String str) {
 		int value = 0;
 		switch (str) {
-			case "wall":     value = WALL;   break;
-			case "empty":    value = EMPTY;  break;
-			case "album":    value = MUSIC;  break;
-			case "song":     value = MUSIC;  break;
-			case "playlist": value = MUSIC;  break;
-			case "monkey":   value = MONKEY; break;
-			case "user":     value = USER;   break;
+			case "wall":     value = Types.WALL;   break;
+			case "empty":    value = Types.EMPTY;  break;
+			case "album":    value = Types.MUSIC;  break;
+			case "song":     value = Types.MUSIC;  break;
+			case "playlist": value = Types.MUSIC;  break;
+			case "monkey":   value = Types.MONKEY; break;
+			case "user":     value = Types.USER;   break;
 		}
 		return value;
+	}
+	
+	public static EdgeWeightedGraph minSpanningTree(Graph g2) {
+		return null;
 	}
 	
 

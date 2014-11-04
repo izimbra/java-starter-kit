@@ -3,6 +3,8 @@ package com.monkeymusicchallenge.warmup.test;
 import com.monkeymusicchallenge.warmup.EdgeWeightedGraph;
 import com.monkeymusicchallenge.warmup.Graph;
 import com.monkeymusicchallenge.warmup.GraphManager;
+import com.monkeymusicchallenge.warmup.Types;
+
 import org.json.JSONArray;
 import org.junit.After;
 import org.junit.Before;
@@ -14,12 +16,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 public class GraphManagerTest {
-	static final int WALL   = -1;
-	static final int EMPTY  = 0;  
-	static final int MUSIC  = 1;
-	static final int MONKEY = 2;
-	static final int USER   = 3;
-
 	private JSONArray jsonLayout;
     private Graph g1;
     private EdgeWeightedGraph g2;
@@ -56,14 +52,13 @@ public class GraphManagerTest {
     @Test
 	public void nodeTypesInG1()
 	{
-        assertNotNull(g1);
-        assertEquals(USER,   g1.getNode(0).getType());
-	    assertEquals(WALL,   g1.getNode(14).getType());
-	    assertEquals(MUSIC,  g1.getNode(15).getType());
-	    assertEquals(EMPTY,  g1.getNode(20).getType());
-	    assertEquals(WALL,   g1.getNode(21).getType());
-	    assertEquals(MONKEY, g1.getNode(30).getType());
-	    assertEquals(MUSIC,  g1.getNode(35).getType());
+        assertEquals(Types.USER,   g1.getNode(0).getType());
+	    assertEquals(Types.WALL,   g1.getNode(14).getType());
+	    assertEquals(Types.MUSIC,  g1.getNode(15).getType());
+	    assertEquals(Types.EMPTY,  g1.getNode(20).getType());
+	    assertEquals(Types.WALL,   g1.getNode(21).getType());
+	    assertEquals(Types.MONKEY, g1.getNode(30).getType());
+	    assertEquals(Types.MUSIC,  g1.getNode(35).getType());
 	}
 
     @Test
@@ -71,14 +66,20 @@ public class GraphManagerTest {
         assertNotNull(g2);
         assertEquals(7, g2.nrOfVertices());
     }
+    
+    @Test
+    public void nodeTypesInG2() {
+    	
+    }
 
     @Test
     public void edgesFromMonkey() {
-        int monkey = g2.whichNode(g2.findType(MONKEY));
+        int monkey = g2.whichNode(g2.findType(Types.MONKEY));
+        System.out.println(monkey);
         System.out.println(g2.adjEdges(monkey));
         assertEquals (6, g2.adjEdges(monkey).size());
-
     }
+
 
 
 

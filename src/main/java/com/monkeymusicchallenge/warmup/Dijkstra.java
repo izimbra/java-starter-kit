@@ -12,8 +12,10 @@ public class Dijkstra {
 
     // path lengths from source
     private int[] distTo;
-    // actual paths from source
+    // actual paths from source (Array of Linked-Lists)
     private LinkedList<Integer>[] pathTo;
+    //private LinkedList<LinkedList<Interger>()> pathTo;
+
     // indexed priority queue of candidate nodes
     // priority is the distance from source
     private IndexMinPQ<Integer> pq;
@@ -21,14 +23,15 @@ public class Dijkstra {
     public Dijkstra(Graph g, int s) {
         int V = g.nrOfVertices();
 
-        // initialise distance and path arrays, and PQ
+        // initialize distance and path arrays, and PQ
         distTo = new int[V];
         pathTo = (LinkedList<Integer>[]) new LinkedList[V];
+
         for (int v = 0; v < V; v++)
             pathTo[v] = new LinkedList<Integer>();
         pq = new IndexMinPQ<Integer>(V);
 
-        // initialise all distances to infinity, except for source
+        // initialize all distances to infinity, except for source
         for (int i = 0; i < V; i++)
             distTo[i] = Integer.MAX_VALUE; //XXX risky, is actually a value
         distTo[s] = 0;

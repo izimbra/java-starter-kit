@@ -53,7 +53,7 @@ public class GraphBuilder {
 	}
 
     // Converts node coordinates to graph index
-    public static int xyToGraphIndex(int x, int y) {
+    private static int xyToGraphIndex(int x, int y) {
     	if(x >= 0 && x < rows && y >= 0 && y < cols) {
     		return (x*cols)+y;
     	} else {
