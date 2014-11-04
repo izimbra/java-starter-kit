@@ -78,7 +78,6 @@ public class GraphManager {
                 }
             }
         }
-
         return g2;
     }
     

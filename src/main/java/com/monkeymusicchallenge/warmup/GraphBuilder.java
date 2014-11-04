@@ -11,6 +11,7 @@ public class GraphBuilder {
 		this.graph = new Graph(rows*cols);
 	}
 
+	// creates a graph reflecting the int symbols in layout
 	public Graph populateGraph(int[][] layout) {
 		for (int i = 0; i < rows; ++i) {
 			for (int j = 0; j < cols; ++j) {
@@ -23,6 +24,7 @@ public class GraphBuilder {
 		return graph;
 	}
 
+	// adds edges between nodes and upper, lower, right, left node if they exist
 	private void connectToNeighbours(TypedNode node) {
 		int x = node.getX();
 		int y = node.getY();
@@ -50,7 +52,7 @@ public class GraphBuilder {
 		return neighbours;
 	}
 
-    // Converts node coordinates to index
+    // Converts node coordinates to graph index
     public static int xyToGraphIndex(int x, int y) {
     	if(x >= 0 && x < rows && y >= 0 && y < cols) {
     		return (x*cols)+y;
