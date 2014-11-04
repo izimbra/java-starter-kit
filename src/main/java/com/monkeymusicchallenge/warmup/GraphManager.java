@@ -64,6 +64,7 @@ public class GraphManager {
             g2.addNode(v++, n);
 
         // run Dijkstra on all pairs in O
+        // and create edges between objects
         Dijkstra d;
         for (TypedNode n : g2.getNodes()) {
             // find source node in g1
@@ -77,11 +78,8 @@ public class GraphManager {
                     g2.addEdge(e);
                 }
             }
-
         }
 
-        // create edges between objects
-        // add edges to g2
         return g2;
     }
     

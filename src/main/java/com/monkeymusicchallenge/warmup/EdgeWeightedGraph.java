@@ -17,7 +17,6 @@ public class EdgeWeightedGraph extends Graph {
         int v = e.getV();
         int w = e.getW();
         adj[v].add(e);
-        adj[w].add(e);
     }
 }
 
