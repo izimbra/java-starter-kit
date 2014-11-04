@@ -14,6 +14,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 public class GraphManagerTest {
+	static final int WALL   = -1;
+	static final int EMPTY  = 0;  
+	static final int MUSIC  = 1;
+	static final int MONKEY = 2;
+	static final int USER   = 3;
 
 	private JSONArray jsonLayout;
     private Graph g1;
@@ -43,10 +48,21 @@ public class GraphManagerTest {
 	}
 	
 	@Test
-	public void noVerticesInG1()
-	{
+	public void noVerticesInG1() {
         assertNotNull(g1);
-	    assertEquals(36, g1.nrOfVertices());
+        assertEquals(36, g1.nrOfVertices());
+    }
+    
+    @Test
+	public void nodeTypesInG1()
+	{
+	    assertEquals(USER,   g1.getNode(0).getType());
+	    assertEquals(WALL,   g1.getNode(14).getType());
+	    assertEquals(MUSIC,  g1.getNode(15).getType());
+	    assertEquals(EMPTY,  g1.getNode(20).getType());
+	    assertEquals(WALL,   g1.getNode(21).getType());
+	    assertEquals(MONKEY, g1.getNode(30).getType());
+	    assertEquals(MUSIC,  g1.getNode(35).getType());
 	}
 
     @Test
