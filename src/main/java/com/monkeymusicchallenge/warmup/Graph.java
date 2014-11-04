@@ -23,7 +23,9 @@ public class Graph {
     }
 
     // Add or update i-th node of the graph
-    public void addNode(int i, TypedNode n) { nodes[i] = n; }
+    public void addNode(int i, TypedNode n) { 
+    	nodes[i] = n; 
+    }
 
     // Adds an edge between two nodes
     public void addEdge(int v, int w) {
@@ -32,10 +34,7 @@ public class Graph {
    }
     
     public TypedNode getNode(int i) {
-    	if (0 >= i && i < nrOfVertices)
-    		return nodes[i];
-    	else
-    		return null;
+    	return (i >= 0 && i < nrOfVertices) ? nodes[i] : null;
     }
     
     public TypedNode[] getNodes() { return nodes; }

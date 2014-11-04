@@ -34,10 +34,9 @@ public class GraphManagerTest {
 	}
 	
 	@Test
-	public void testCreateLayout() 
+	public void createLayout() 
 	{
 	    Graph g = GraphManager.createGraph(jsonLayout);
-	    System.out.print(g.nrOfVertices());
 	    assertEquals(g.nrOfVertices(), 36);
 	}
 

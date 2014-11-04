@@ -45,10 +45,6 @@ public class GraphBuilder {
 			neighbours[2] = graph.getNode(xyToGraphIndex(x,   y+1)); // right
 			neighbours[3] = graph.getNode(xyToGraphIndex(x+1, y));   // lower
 		} catch (ArrayIndexOutOfBoundsException e) {
-			for(TypedNode n : neighbours) {
-				if( n != null)
-					System.out.println(" n.x: " + n.getX() + " n.y: " + n.getY() + " type: " + n.getType());
-			}	
 			System.out.println("Index out of bounds x: " + x + " y: " + y);
 		}
 		return neighbours;
@@ -56,9 +52,10 @@ public class GraphBuilder {
 
     // Converts node coordinates to index
     public static int xyToGraphIndex(int x, int y) {
-    	//if(x >= 0 && x < rows && y >= 0 && y < cols)
-    	return (x*cols)+y;
-    	//else
-    	//	return -1;
+    	if(x >= 0 && x < rows && y >= 0 && y < cols) {
+    		return (x*cols)+y;
+    	} else {
+    		return -1;
+    	}
     }
 }

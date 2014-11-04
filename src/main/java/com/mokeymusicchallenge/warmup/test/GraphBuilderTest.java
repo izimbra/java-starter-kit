@@ -34,13 +34,13 @@ public class GraphBuilderTest {
 	}
 
 	@Test
-	public void xyToGraphIndexTest() {
+	public void xyToGraphIndex() {
 		assertEquals("last row, last col should be equal 35", GraphBuilder.xyToGraphIndex(5, 5), 35);
 		assertEquals("first row, first col should be equal 0", GraphBuilder.xyToGraphIndex(0, 0), 0);		
 	}
 	
 	@Test
-	public void populateGraphTest() {
+	public void populateGraph() {
 		Graph g = builder.populateGraph(layout);
 		assertEquals("graph size should be equal 36", g.nrOfVertices(), 36);
 	}
