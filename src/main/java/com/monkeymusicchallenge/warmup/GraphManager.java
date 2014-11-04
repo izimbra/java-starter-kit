@@ -51,7 +51,7 @@ public class GraphManager {
         EdgeWeightedGraph g2;
 
         // find O - game objects in g1
-        List<Integer> objects = Arrays.asList(new Integer[] {MUSIC, MONKEY, USER});
+        List<Integer> objects = Arrays.asList(new Integer[] { MUSIC, MONKEY, USER });
         LinkedList<TypedNode> ns = new LinkedList<TypedNode>();
         for (TypedNode n : g1.getNodes())
             if (objects.contains(n.getType()))
