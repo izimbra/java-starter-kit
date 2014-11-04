@@ -46,8 +46,7 @@ public class GraphManager {
     /**
      * Create edge-weighted graph with distances between game objects
      */
-    public static EdgeWeightedGraph createObjectGraph(JSONArray jsonLayout) {
-        Graph g1 = createGraph(jsonLayout);
+    public static EdgeWeightedGraph createObjectGraph(Graph g1) {
         EdgeWeightedGraph g2;
 
         // find O - game objects in g1

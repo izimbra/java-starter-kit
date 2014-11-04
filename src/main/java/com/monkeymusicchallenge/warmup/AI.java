@@ -119,7 +119,7 @@ public class AI {
     }
 
     private String direction(JSONArray layout, JSONArray monkey) {
-        GraphManager.createObjectGraph(layout); // Now we have information of the layout
+       // GraphManager.createObjectGraph(layout); // Now we have information of the layout
         return nextDir();
     }
 

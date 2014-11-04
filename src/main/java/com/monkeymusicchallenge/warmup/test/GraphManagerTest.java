@@ -1,20 +1,24 @@
 package com.monkeymusicchallenge.warmup.test;
 
-import java.util.Arrays;
-import org.json.JSONArray;
-
+import com.monkeymusicchallenge.warmup.EdgeWeightedGraph;
 import com.monkeymusicchallenge.warmup.Graph;
 import com.monkeymusicchallenge.warmup.GraphManager;
-
-import static org.junit.Assert.*;
-
+import org.json.JSONArray;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 public class GraphManagerTest {
 
 	private JSONArray jsonLayout;
+    private Graph g1;
+    private EdgeWeightedGraph g2;
+
 	
 	@Before
 	public void setUp() throws Exception {
@@ -26,7 +30,12 @@ public class GraphManagerTest {
 		jsonLayout.put(new JSONArray(Arrays.asList("empty"   , "empty", "empty", "wall" , "empty", "song")));
 		jsonLayout.put(new JSONArray(Arrays.asList("empty"   , "wall" , "empty", "empty", "empty", "wall")));
 		jsonLayout.put(new JSONArray(Arrays.asList("monkey"  , "wall" , "song" , "wall" , "empty", "playlist")));
-	}
+
+        // create the graphs
+        g1 = GraphManager.createGraph(jsonLayout);
+        //g2 = GraphManager.createObjectGraph(g1);
+
+    }
 
 	@After
 	public void tearDown() throws Exception {
@@ -34,10 +43,18 @@ public class GraphManagerTest {
 	}
 	
 	@Test
-	public void createLayout() 
+	public void noVerticesInG1()
 	{
-	    Graph g = GraphManager.createGraph(jsonLayout);
-	    assertEquals(g.nrOfVertices(), 36);
+        assertNotNull(g1);
+	    assertEquals(36, g1.nrOfVertices());
 	}
+
+    @Test
+    public void noVerticesInG2() {
+//        g1 = GraphManager.createGraph(jsonLayout);
+//        assertNotNull(g1);
+//        assertEquals(36, g1.nrOfVertices());
+//        g2 = GraphManager.createObjectGraph(g1);
+    }
 
 }
