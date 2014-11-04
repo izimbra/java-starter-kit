@@ -72,5 +72,14 @@ public class GraphManagerTest {
         assertEquals(7, g2.nrOfVertices());
     }
 
+    @Test
+    public void edgesFromMonkey() {
+        int monkey = g2.whichNode(g2.findType(MONKEY));
+        System.out.println(g2.adjEdges(monkey));
+        assertEquals (6, g2.adjEdges(monkey).size());
+
+    }
+
+
 
 }
