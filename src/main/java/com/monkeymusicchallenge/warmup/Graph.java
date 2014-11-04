@@ -31,7 +31,7 @@ public class Graph {
         adj[v].add(w);
         adj[w].add(v);
         nrOfEdges++;
-   }
+    }
     
     public TypedNode getNode(int i) {
     	return (i >= 0 && i < nrOfVertices) ? nodes[i] : null;

@@ -26,5 +26,9 @@ public class TypedNode {
     public int getType() {
         return type;
     }
+    
+    public TypedNode clone() {
+    	return new TypedNode(this.x, this.y, this.type);
+    }
 
 }
