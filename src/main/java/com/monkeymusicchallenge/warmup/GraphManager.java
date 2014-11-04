@@ -117,12 +117,30 @@ public class GraphManager {
         for (TypedNode n : g1.getNodes())
             if (objects.contains(n.getType()))
                 ns.add(n);
+
         // set nodes of g2 to be O, new indices
         g2 = new EdgeWeightedGraph(ns.size());
         int v = 0;
         for (TypedNode n : ns)
             g2.addNode(v++, n);
+
         // run Dijkstra on all pairs in O
+        Dijkstra d;
+        for (TypedNode n : g2.getNodes()) {
+            // find source node in g1
+            int s = g2.whichNode(n);
+            //run Dijkstra
+            d = new Dijkstra(g2, s);
+            // add edge to other nodes if distance is not dummy value
+            for (int t = 0; t < g2.nrOfVertices(); t++) {
+                if (t != s && d.getDistTo(t) < Integer.MAX_VALUE) {
+                    Edge e = new Edge(s, t, d.getDistTo(t), d.getPathTo(t));
+                    g2.addEdge(e);
+                }
+            }
+
+        }
+
         // create edges between objects
         // add edges to g2
         return g2;
