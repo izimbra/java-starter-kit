@@ -32,7 +32,7 @@ public class Dijkstra {
         for (int i = 0; i < V; i++)
             distTo[i] = Integer.MAX_VALUE; //XXX risky, is actually a value
         distTo[s] = 0;
-        pathTo[s].add(0);
+        pathTo[s].add(s);
 
         // add source to PQ
         pq.insert(s, 0);
