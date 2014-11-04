@@ -9,7 +9,7 @@ import java.util.LinkedList;
  */
 public class Graph {
     private final int nrOfVertices; // no. vertices
-    private int nrOfEdges;          // no. edges
+    protected int nrOfEdges;        // no. edges
     private TypedNode[] nodes;      // nodes of the graph
     private LinkedList<Integer>[] adj;
 
@@ -49,6 +49,8 @@ public class Graph {
 
     // No. vertices in the graph
     public int nrOfVertices() { return nrOfVertices; }
+
+    public int nrOfEdges() { return nrOfEdges; }
 
     // Adjacency list of i-th node
     public LinkedList<Integer> adj(int i) { return adj[i]; }

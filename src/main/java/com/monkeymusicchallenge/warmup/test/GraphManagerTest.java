@@ -1,8 +1,10 @@
 package com.monkeymusicchallenge.warmup.test;
 
+import com.monkeymusicchallenge.warmup.Edge;
 import com.monkeymusicchallenge.warmup.EdgeWeightedGraph;
 import com.monkeymusicchallenge.warmup.Graph;
 import com.monkeymusicchallenge.warmup.GraphManager;
+import com.monkeymusicchallenge.warmup.TypedNode;
 import com.monkeymusicchallenge.warmup.Types;
 
 import org.json.JSONArray;
@@ -11,6 +13,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.ListIterator;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -68,17 +72,36 @@ public class GraphManagerTest {
     }
     
     @Test
+    public void noEdgesInG2() {
+    	// should be a complete graph
+        //assertEquals(6*6, g2.nrOfEdges());
+    }
+    
+    @Test
     public void nodeTypesInG2() {
-    	
+    	// monkey
+    	TypedNode monkey = g2.findType(Types.MONKEY);
+    	assertEquals(5, monkey.getX());
+    	assertEquals(0, monkey.getY());
+    	// user
+    	TypedNode user = g2.findType(Types.USER);
+    	assertEquals(0, user.getX());
+    	assertEquals(0, user.getY());
     }
 
+    /*
     @Test
     public void edgesFromMonkey() {
-        int monkey = g2.whichNode(g2.findType(Types.MONKEY));
-        System.out.println(monkey);
-        System.out.println(g2.adjEdges(monkey));
-        assertEquals (6, g2.adjEdges(monkey).size());
+    	int monkey = g2.whichNode(g2.findType(Types.MONKEY));
+        //System.out.println(monkey);
+        ListIterator<Edge> it = g2.adjEdges(4).listIterator();
+        while(it.hasNext())
+        	System.out.println(it.next().getV());
+    
+        //System.out.println(g2.adjEdges(0));
+        //assertEquals (6, g2.adjEdges(monkey).size());
     }
+    */
 
 
 

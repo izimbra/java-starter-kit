@@ -61,14 +61,16 @@ public class GraphManager {
         for (TypedNode n : g2.getNodes()) {
             // find source node in g1
             int s = g2.whichNode(n);
-            //run Dijkstra
+            // run Dijkstra
             d = new Dijkstra(g2, s);
             // add edge to other nodes if distance is not dummy value
             for (int t = 0; t < g2.nrOfVertices(); t++) {
+            	System.out.print(d.getDistTo(t));
                 if (t != s && d.getDistTo(t) < Integer.MAX_VALUE) {
                     Edge e = new Edge(s, t, d.getDistTo(t), d.getPathTo(t));
                     g2.addEdge(e);
                 }
+                System.out.println("");
             }
         }
         return g2;
@@ -89,7 +91,9 @@ public class GraphManager {
 		return value;
 	}
 	
-	public static EdgeWeightedGraph minSpanningTree(Graph g2) {
+	public static EdgeWeightedGraph minimumSpanningTree(EdgeWeightedGraph g2) {
+		//EdgeWeightedGraph g3
+		//for()
 		return null;
 	}
 	
