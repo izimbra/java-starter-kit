@@ -10,4 +10,4 @@ import org.junit.runners.Suite;
    GraphBuilderTest.class,
    DijkstraTest.class
 })
-public class JunitTestSuite { }  	
+public class TestSuite { }  	

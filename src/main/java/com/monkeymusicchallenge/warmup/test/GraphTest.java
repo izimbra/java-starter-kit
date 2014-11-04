@@ -48,8 +48,10 @@ public class GraphTest {
     	assertEquals(1, (int) list0.get(0));
     	
     	LinkedList<Integer> list1 = g.adj(1);
-    	assertEquals(2, (int) list1.get(0));
-    	assertEquals(0, (int) list1.get(1));
+    	for (Integer i : list1)
+    		System.out.print(i);
+    	assertEquals(0, (int) list1.get(0));
+    	assertEquals(2, (int) list1.get(1));
     	
     	LinkedList<Integer> list2 = g.adj(2);
     	assertEquals(1, (int) list2.get(0));
