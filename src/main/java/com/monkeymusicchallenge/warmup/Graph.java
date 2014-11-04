@@ -9,16 +9,14 @@ import java.util.LinkedList;
  */
 public class Graph {
     private final int nrOfVertices; // no. vertices
-    private int nrOfEdges; // no. edges
-    private TypedNode[] nodes; // nodes of the graph
+    private int nrOfEdges;          // no. edges
+    private TypedNode[] nodes;      // nodes of the graph
     private LinkedList<Integer>[] adj;
 
-    public Graph(int nov) {
+    public Graph(int nov) {         // nov = number of vertices
         nrOfVertices = nov;
         nodes = new TypedNode[nov];
-
         adj = (LinkedList<Integer>[]) new LinkedList[nov];
-
         for (int v = 0; v < nrOfVertices; v++)
             adj[v] = new LinkedList<Integer>();
     }
@@ -33,7 +31,12 @@ public class Graph {
         nrOfEdges++;
    }
     
-    public TypedNode getNode(int i) { return nodes[i]; }
+    public TypedNode getNode(int i) {
+    	if (0 >= i && i < nrOfVertices)
+    		return nodes[i];
+    	else
+    		return null;
+    }
     
     public TypedNode[] getNodes() { return nodes; }
 
