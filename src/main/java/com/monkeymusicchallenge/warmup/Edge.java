@@ -9,7 +9,7 @@ import java.util.LinkedList;
  * and the path between them
  * in the original {@link Graph} object
  */
-public class Edge {
+public class Edge implements Comparable<Edge>{
     private int v;
     private int w;
     private int weight;
@@ -25,4 +25,9 @@ public class Edge {
     public int getV() { return v; }
     public int getW() { return w; }
 
+    public int compareTo(Edge that) {
+        if      (this.weight < that.weight) return -1;
+        else if (this.weight > that.weight) return  1;
+        else                                return  0;
+    }
 }

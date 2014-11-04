@@ -14,16 +14,16 @@ public class GraphManager {
     public static final int MONKEY = 2;
     public static final int USER   = 3;
 
-	// -1: wall, 0: empty, 1: music (song, album, playlist), 2: monkey, 3: user
-	private static int[][] layout = null;
-
     /**
      * Create initial graph with unit edges
      * from JSON game layout
      * @param jsonLayout
      */
 	public static Graph createGraph(JSONArray jsonLayout) {
-        if (layout == null) {
+        // -1: wall, 0: empty, 1: music (song, album, playlist), 2: monkey, 3: user
+        int[][] layout = null;
+
+        if (jsonLayout.length() != 0) {
 			// calculate the matrix values (wall, empty, music and user)
 			int rows = jsonLayout.length();
 			int cols = jsonLayout.getJSONArray(0).length();
@@ -40,7 +40,8 @@ public class GraphManager {
 			}
             return builder.populateGraph(layout);
 		}
-        return null;
+        else
+            return null;
 	}
 
     /**

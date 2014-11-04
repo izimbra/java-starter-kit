@@ -38,7 +38,7 @@ public class GraphManagerTest {
 
         // create the graphs
         g1 = GraphManager.createGraph(jsonLayout);
-        //g2 = GraphManager.createObjectGraph(g1);
+        g2 = GraphManager.createObjectGraph(g1);
 
     }
 
@@ -52,11 +52,12 @@ public class GraphManagerTest {
         assertNotNull(g1);
         assertEquals(36, g1.nrOfVertices());
     }
-    
+
     @Test
 	public void nodeTypesInG1()
 	{
-	    assertEquals(USER,   g1.getNode(0).getType());
+        assertNotNull(g1);
+        assertEquals(USER,   g1.getNode(0).getType());
 	    assertEquals(WALL,   g1.getNode(14).getType());
 	    assertEquals(MUSIC,  g1.getNode(15).getType());
 	    assertEquals(EMPTY,  g1.getNode(20).getType());
@@ -67,10 +68,18 @@ public class GraphManagerTest {
 
     @Test
     public void noVerticesInG2() {
-//        g1 = GraphManager.createGraph(jsonLayout);
-//        assertNotNull(g1);
-//        assertEquals(36, g1.nrOfVertices());
-//        g2 = GraphManager.createObjectGraph(g1);
+        assertNotNull(g2);
+        assertEquals(7, g2.nrOfVertices());
     }
+
+    @Test
+    public void edgesFromMonkey() {
+        int monkey = g2.whichNode(g2.findType(MONKEY));
+        System.out.println(g2.adjEdges(monkey));
+        assertEquals (6, g2.adjEdges(monkey).size());
+
+    }
+
+
 
 }
