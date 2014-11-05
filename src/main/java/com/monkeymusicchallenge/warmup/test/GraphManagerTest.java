@@ -13,8 +13,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.ListIterator;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -64,6 +62,13 @@ public class GraphManagerTest {
 	    assertEquals(Types.MONKEY, g1.getNode(30).getType());
 	    assertEquals(Types.MUSIC,  g1.getNode(35).getType());
 	}
+    
+    @Test
+    public void noEdgesInG1() {
+    	// should be a complete graph except walls
+        assertEquals(56, g1.nrOfEdges());
+    }
+    
 
     @Test
     public void noVerticesInG2() {
@@ -73,8 +78,8 @@ public class GraphManagerTest {
     
     @Test
     public void noEdgesInG2() {
-    	// should be a complete graph
-        //assertEquals(6*6, g2.nrOfEdges());
+    	// should be a complete graph!
+        assertEquals(6*6, g2.nrOfEdges());
     }
     
     @Test
