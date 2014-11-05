@@ -29,7 +29,7 @@ public class Graph {
     // Adds an edge between two nodes
     public void addEdge(int v, int w) {
         adj[v].add(w);
-        adj[w].add(v);
+        adj[w].add(v); // TODO: Should this be done?
         nrOfEdges++;
     }
     

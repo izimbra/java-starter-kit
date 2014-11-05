@@ -22,7 +22,6 @@ public class EdgeWeightedGraph extends Graph {
         //int w = e.getW();  //NECESSARY?
         adjE[v].add(e);
         nrOfEdges++;
-
     }
 
     public LinkedList<Edge> adjEdges(int v) {

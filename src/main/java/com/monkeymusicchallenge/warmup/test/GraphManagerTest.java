@@ -37,7 +37,6 @@ public class GraphManagerTest {
         // create the graphs
         g1 = GraphManager.createGraph(jsonLayout);
         g2 = GraphManager.createObjectGraph(g1);
-
     }
 
 	@After

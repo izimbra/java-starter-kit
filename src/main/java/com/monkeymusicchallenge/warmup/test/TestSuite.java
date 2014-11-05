@@ -7,6 +7,7 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
    GraphManagerTest.class,
    GraphTest.class,
+   EdgeWeightedGraphTest.class,
    GraphBuilderTest.class,
    DijkstraTest.class
 })
