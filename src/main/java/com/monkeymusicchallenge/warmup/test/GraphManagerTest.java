@@ -108,6 +108,10 @@ public class GraphManagerTest {
     }
     */
 
+    @Test
+    public void minimumSpanningTree() {
+    	
+    }
 
 
 
