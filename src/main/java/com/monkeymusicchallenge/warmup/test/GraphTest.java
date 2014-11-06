@@ -30,7 +30,7 @@ public class GraphTest {
 
     @Test
     public void noOfVertices() {
-        assertEquals(g.nrOfVertices(), 3);
+        assertEquals(3, g.nrOfVertices());
     }
     
     /*

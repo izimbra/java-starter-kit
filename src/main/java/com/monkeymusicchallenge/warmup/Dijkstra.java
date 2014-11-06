@@ -57,7 +57,6 @@ public class Dijkstra {
             }
         }
     }
-
     // Getters
 
     public LinkedList<Integer> getPathTo(int v) {

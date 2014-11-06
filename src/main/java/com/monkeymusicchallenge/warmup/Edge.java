@@ -24,6 +24,7 @@ public class Edge implements Comparable<Edge>{
 
     public int getV() { return v; }
     public int getW() { return w; }
+    public int getWeight() { return weight; }
 
     public int compareTo(Edge that) {
         if      (this.weight < that.weight) return -1;
