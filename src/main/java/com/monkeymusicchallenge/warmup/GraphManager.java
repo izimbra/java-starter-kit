@@ -58,19 +58,25 @@ public class GraphManager {
         // run Dijkstra on all pairs in O
         // and create edges between objects
         Dijkstra d;
-        for (TypedNode n : g2.getNodes()) {
-            // find source node in g1
-            int s = g2.whichNode(n);
+        for (TypedNode source : g2.getNodes()) {
+            // find source node indices in g1 and g2
+            int sG1 = g1.whichNode(source);
+            int sG2 = g2.whichNode(source);
             // run Dijkstra
-            d = new Dijkstra(g2, s);
-            // add edge to other nodes if distance is not dummy value
-            for (int t = 0; t < g2.nrOfVertices(); t++) {
-            	//TODO: System.out.print(d.getDistTo(t)); // Something is wrong here
-                if (t != s && d.getDistTo(t) < Integer.MAX_VALUE) {
-                    Edge e = new Edge(s, t, d.getDistTo(t), d.getPathTo(t));
+            d = new Dijkstra(g1, sG1);
+            // in g2, add edge to other nodes if distance is not dummy value
+            for (int tG2 = 0; tG2 < g2.nrOfVertices(); tG2++) {
+                // find target node indices in g1 in g2
+                int tG1 = g1.whichNode(g2.getNode(tG2));
+                if (tG2 != sG2 && // no self-loop
+                    d.getDistTo(tG1) < Integer.MAX_VALUE) { // dist must be real
+                    Edge e = new Edge(
+                            sG2, // use node
+                            tG2, // indices from g2
+                            d.getDistTo(tG1),  // use distances
+                            d.getPathTo(tG1)); // and paths from g1
                     g2.addEdge(e);
                 }
-                //TODO: System.out.println(""); // Something is wrong here
             }
         }
         return g2;

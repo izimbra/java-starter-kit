@@ -1,19 +1,17 @@
 package com.monkeymusicchallenge.warmup.test;
 
-import com.monkeymusicchallenge.warmup.Edge;
-import com.monkeymusicchallenge.warmup.EdgeWeightedGraph;
-import com.monkeymusicchallenge.warmup.Graph;
-import com.monkeymusicchallenge.warmup.GraphManager;
-import com.monkeymusicchallenge.warmup.TypedNode;
-import com.monkeymusicchallenge.warmup.Types;
-
+import com.monkeymusicchallenge.warmup.*;
 import org.json.JSONArray;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.ListIterator;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -74,28 +72,42 @@ public class GraphManagerTest {
         assertNotNull(g2);
         assertEquals(7, g2.nrOfVertices());
     }
-    
+
+    @Test
+    public void nodeTypesInG2() {
+        // monkey
+        TypedNode monkey = g2.findType(Types.MONKEY);
+        assertEquals(5, monkey.getX());
+        assertEquals(0, monkey.getY());
+        // user
+        TypedNode user = g2.findType(Types.USER);
+        assertEquals(0, user.getX());
+        assertEquals(0, user.getY());
+    }
+
     @Test
     public void noEdgesInG2() {
     	// should be a complete graph!
-        assertEquals(6*6, g2.nrOfEdges());
-    }
-    
-    @Test
-    public void nodeTypesInG2() {
-    	// monkey
-    	TypedNode monkey = g2.findType(Types.MONKEY);
-    	assertEquals(5, monkey.getX());
-    	assertEquals(0, monkey.getY());
-    	// user
-    	TypedNode user = g2.findType(Types.USER);
-    	assertEquals(0, user.getX());
-    	assertEquals(0, user.getY());
+        assertEquals(42, g2.nrOfEdges());
+        // not n*n (we don't want self-loop edges)
+        // but rather nPk formula which gives
+        // in this case - http://mathworld.wolfram.com/Permutation.html
     }
 
-    /*
     @Test
-    public void edgesFromMonkey() {
+    public void distFromMonkeyInG2() {
+        // find monkey node
+        int v = g2.whichNode(g2.findType(Types.MONKEY));
+        // find and sort distances from monkey
+        LinkedList<Integer> dists = new LinkedList<Integer>();
+        for (Edge e : g2.adjEdges(v))
+            dists.add(e.getWeight());
+        Collections.sort(dists);
+        assertArrayEquals(new Integer[]{6,9,9,10,17,18}, dists.toArray(new Integer[6]));
+    }
+
+    @Test
+    public void edgesFromMonkeyInG2() {
     	int monkey = g2.whichNode(g2.findType(Types.MONKEY));
         //System.out.println(monkey);
         ListIterator<Edge> it = g2.adjEdges(4).listIterator();
@@ -103,9 +115,9 @@ public class GraphManagerTest {
         	System.out.println(it.next().getV());
     
         //System.out.println(g2.adjEdges(0));
-        //assertEquals (6, g2.adjEdges(monkey).size());
+        assertEquals (6, g2.adjEdges(monkey).size());
     }
-    */
+
 
     @Test
     public void minimumSpanningTree() {
