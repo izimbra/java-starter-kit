@@ -90,12 +90,12 @@ public class GraphManagerTest {
     	// should be a complete graph!
         assertEquals(42, g2.nrOfEdges());
         // not n*n (we don't want self-loop edges)
-        // but rather nPk formula which gives
+        // but rather nPk formula which gives 42
         // in this case - http://mathworld.wolfram.com/Permutation.html
     }
 
     @Test
-    public void distFromMonkeyInG2() {
+    public void distsFromMonkeyInG2() {
         // find monkey node
         int v = g2.whichNode(g2.findType(Types.MONKEY));
         // find and sort distances from monkey
