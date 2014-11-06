@@ -69,8 +69,87 @@ public class EdgeWeightedGraphTest {
 	}
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void noOfVertices() {
+		assertEquals(9, g.nrOfVertices());
 	}
+	
+	@Test
+	public void noOfEdges() {
+		assertEquals(12, g.nrOfEdges());
+	}
+	
+	@Test
+	public void adjEdgesSize() {
+		//Test correct sizes of the returned list of adjacent edges
+		assertEquals(1, g.adjEdges(0).size());
+		assertEquals(2, g.adjEdges(1).size());
+		assertEquals(2, g.adjEdges(2).size());	
+		assertEquals(2, g.adjEdges(3).size());	
+		assertEquals(1, g.adjEdges(4).size());	
+		assertEquals(1, g.adjEdges(5).size());	
+		assertEquals(1, g.adjEdges(6).size());
+		assertEquals(1, g.adjEdges(7).size());	
+		assertEquals(1, g.adjEdges(8).size());		
+	}
+	
+	@Test
+	public void adjEdgesContent() {
+		//Test correct sizes of the returned list of adjacent edges
+		LinkedList<Edge> list0 = g.adjEdges(0);
+		Edge e0_1 = list0.get(0);
+		assertEquals(0, e0_1.getV());
+		assertEquals(1, e0_1.getW());
+		assertEquals(5, e0_1.getWeight());
+		
+		LinkedList<Edge> list1 = g.adjEdges(1);
+		Edge e1_3 = list1.get(0);
+		Edge e1_8 = list1.get(1);
+		assertEquals(1, e1_3.getV());
+		assertEquals(3, e1_3.getW());
+		assertEquals(10,e1_3.getWeight());
+		assertEquals(1, e1_8.getV());
+		assertEquals(8, e1_8.getW());
+		
+		LinkedList<Edge> list2 = g.adjEdges(2);
+		Edge e2_4 = list2.get(0);
+		Edge e2_5 = list2.get(1);
+		assertEquals(2, e2_4.getV());
+		assertEquals(4, e2_4.getW());
+		assertEquals(2, e2_5.getV());
+		assertEquals(5, e2_5.getW());
 
+		LinkedList<Edge> list3 = g.adjEdges(3);
+		Edge e3_0 = list3.get(0);
+		Edge e3_6 = list3.get(1);
+		assertEquals(3, e3_0.getV());
+		assertEquals(0, e3_0.getW());
+		assertEquals(3, e3_6.getV());
+		assertEquals(6, e3_6.getW());
+		
+		LinkedList<Edge> list4 = g.adjEdges(4);
+		Edge e4_2 = list4.get(0);		
+		assertEquals(4, e4_2.getV());
+		assertEquals(2, e4_2.getW());
+		
+		LinkedList<Edge> list5 = g.adjEdges(5);
+		Edge e5_6 = list5.get(0);
+		assertEquals(5, e5_6.getV());
+		assertEquals(6, e5_6.getW());
+	
+		LinkedList<Edge> list6 = g.adjEdges(6);
+		Edge e6_7 = list6.get(0);
+		assertEquals(6, e6_7.getV());
+		assertEquals(7, e6_7.getW());
+		
+		LinkedList<Edge> list7 = g.adjEdges(7);
+		Edge e7_2 = list7.get(0);
+		assertEquals(7, e7_2.getV());
+		assertEquals(2, e7_2.getW());
+		
+		LinkedList<Edge> list8 = g.adjEdges(8);
+		Edge e8_7 = list8.get(0);
+		assertEquals(8, e8_7.getV());
+		assertEquals(7, e8_7.getW());		
+	}
+	
 }

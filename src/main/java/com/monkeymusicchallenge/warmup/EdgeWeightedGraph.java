@@ -29,6 +29,7 @@ public class EdgeWeightedGraph extends Graph {
     }
 
     // Find some node of the specified type
+    // TODO: Refactor this method, think about what it is supposed to do...
     public TypedNode findType(int t) {
         for (TypedNode n : this.getNodes())
             if (n.getType() == t) return n;
