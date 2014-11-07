@@ -19,8 +19,6 @@ public class GraphManagerTest {
     private EdgeWeightedGraph g2;
     private EdgeWeightedGraph mst;
 
-
-	
 	@Before
 	public void setUp() throws Exception {
 		// creates the layout returned by server
@@ -117,13 +115,21 @@ public class GraphManagerTest {
     public void minimumSpanningTree() {
     	// degree < 3 and > 0 on all nodes
     	TypedNode[] nodes = mst.getNodes();
-    	boolean degLessThan3 = true;
+    	boolean correctDegree = true;
     	for(int i=0; i < nodes.length; i++) {
     		int deg = mst.adj(i).size();
-    		if(deg < 1 || deg > 2)
-    			degLessThan3 = false;
+    		if(deg < 1 || deg > 2) {
+    			System.out.println(deg);
+    			correctDegree = false;
+    		}
     	}
-    	assertTrue(degLessThan3);
+    	assertTrue(correctDegree);
+    }
+    
+    @Test
+    public void getAllEdges() {
+    	Edge[] edges = GraphManager.getAllEdges(g2);
+        assertEquals(42, edges.length);
     }
 
 

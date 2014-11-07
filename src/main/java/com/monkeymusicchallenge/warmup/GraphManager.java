@@ -2,6 +2,7 @@ package com.monkeymusicchallenge.warmup;
 
 import org.json.JSONArray;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -38,6 +39,7 @@ public class GraphManager {
 
     /**
      * Create edge-weighted graph with distances between game objects
+     * @param g1
      */
     public static EdgeWeightedGraph createObjectGraph(Graph g1) {
         EdgeWeightedGraph g2;
@@ -97,13 +99,49 @@ public class GraphManager {
 		return value;
 	}
 	
+	/**
+	 * finds and returns the minimum spanning tree in g2
+	 * @param g2
+	 */
 	public static EdgeWeightedGraph minimumSpanningTree(EdgeWeightedGraph g2) {
 		int nrOfVertices = g2.nrOfVertices();
-		EdgeWeightedGraph g3 = new EdgeWeightedGraph(nrOfVertices);
-		
-		
-		return g3;
+		EdgeWeightedGraph mst = new EdgeWeightedGraph(nrOfVertices);
+		Edge[] edges = getAllEdges(g2);
+		// Add all minimum edges (Kruskal-style)
+		boolean completeMST = false;
+		while(!completeMST) { 
+			int min = Integer.MAX_VALUE;
+			Edge minEdge = null;
+			for(int j=0; j < edges.length; j++) {
+				Edge e = edges[j];
+				int v = e.getV(); 
+				if(!e.marked() &&            // 1. Edge is not already included,
+					e.getWeight() < min &&   // 2. Edge is smaller than all previous,
+					mst.adj(v).size() < 2) { // 3. And node is of degree < 2.
+					minEdge = e;
+				}
+			}
+			if(minEdge == null) {
+				completeMST = true; // the MST is complete! => break while loop.
+			} else {
+				minEdge.mark(true); // mark visited edge
+				int v = minEdge.getV();
+				if(mst.getNode(v) == null) // if node not added to MST yet, add node.
+					mst.addNode(v, g2.getNode(v));
+				mst.addEdge(minEdge);
+			}
+		}
+		return mst;
 	}
 	
+	public static Edge[] getAllEdges(EdgeWeightedGraph g) {
+		ArrayList<Edge> edges = new ArrayList<Edge>();
+		for(int i=0; i < g.nrOfVertices(); i++) {
+			for(Edge e : g.adjEdges(i)) {
+				edges.add(e);
+			}
+		}
+		return edges.toArray(new Edge[edges.size()]);
+	}
 
 }

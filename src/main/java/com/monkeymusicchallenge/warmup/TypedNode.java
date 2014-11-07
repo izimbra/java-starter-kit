@@ -15,17 +15,9 @@ public class TypedNode {
         this.type = type;
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public int getType() {
-        return type;
-    }
+    public int getX() { return x; }
+    public int getY() { return y; }
+    public int getType() { return type; }   
     
     public TypedNode clone() {
     	return new TypedNode(this.x, this.y, this.type);
