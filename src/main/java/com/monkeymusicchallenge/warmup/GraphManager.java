@@ -98,8 +98,11 @@ public class GraphManager {
 	}
 	
 	public static EdgeWeightedGraph minimumSpanningTree(EdgeWeightedGraph g2) {
-		//EdgeWeightedGraph g3;
-		return null;
+		int nrOfVertices = g2.nrOfVertices();
+		EdgeWeightedGraph g3 = new EdgeWeightedGraph(nrOfVertices);
+		
+		
+		return g3;
 	}
 	
 

@@ -1,6 +1,7 @@
 package com.monkeymusicchallenge.warmup.test;
 
 import com.monkeymusicchallenge.warmup.*;
+
 import org.json.JSONArray;
 import org.junit.After;
 import org.junit.Before;
@@ -9,16 +10,15 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
-import java.util.ListIterator;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class GraphManagerTest {
 	private JSONArray jsonLayout;
     private Graph g1;
     private EdgeWeightedGraph g2;
+    private EdgeWeightedGraph mst;
+
 
 	
 	@Before
@@ -35,6 +35,7 @@ public class GraphManagerTest {
         // create the graphs
         g1 = GraphManager.createGraph(jsonLayout);
         g2 = GraphManager.createObjectGraph(g1);
+        mst = GraphManager.minimumSpanningTree(g2);
     }
 
 	@After
@@ -109,19 +110,20 @@ public class GraphManagerTest {
     @Test
     public void edgesFromMonkeyInG2() {
     	int monkey = g2.whichNode(g2.findType(Types.MONKEY));
-        //System.out.println(monkey);
-        ListIterator<Edge> it = g2.adjEdges(4).listIterator();
-        while(it.hasNext())
-        	System.out.println(it.next().getV());
-    
-        //System.out.println(g2.adjEdges(0));
         assertEquals (6, g2.adjEdges(monkey).size());
     }
-
-
+    
     @Test
     public void minimumSpanningTree() {
-    	
+    	// degree < 3 and > 0 on all nodes
+    	TypedNode[] nodes = mst.getNodes();
+    	boolean degLessThan3 = true;
+    	for(int i=0; i < nodes.length; i++) {
+    		int deg = mst.adj(i).size();
+    		if(deg < 1 || deg > 2)
+    			degLessThan3 = false;
+    	}
+    	assertTrue(degLessThan3);
     }
 
 
