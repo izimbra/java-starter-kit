@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -107,43 +106,42 @@ public class GraphManager {
 	 * @param g2
 	 */
 	public static EdgeWeightedGraph minimumSpanningTree(EdgeWeightedGraph g2) {
-		/*int nrOfVertices = g2.nrOfVertices();
+		int nrOfVertices = g2.nrOfVertices();
 		EdgeWeightedGraph mst = new EdgeWeightedGraph(nrOfVertices);
-		Edge[] edges = getSortedEdges(g2);
+		
 		// Add all minimum edges (Kruskal-style)
-		boolean completeMST = false;
-		// testing purposes
-		//int count = 0;
-		while(!completeMST) { 
-			int min = Integer.MAX_VALUE;
-			Edge minEdge = null;
-			for(int i=0; i < edges.length; i++) {
-				Edge e = edges[i];
-				int v = e.getV(); 
-				if(!e.marked() &&            // 1. Edge is not already included,
-					e.getWeight() < min &&   // 2. Edge is smaller than all previous,
-					mst.adj(v).size() < 2) { // 3. And node is of degree < 2.
-					minEdge = e;
-				}
-			}
-			if(minEdge == null || nrOfVertices == 0) {
-				completeMST = true; // the MST is complete! => break while loop.
-			} else {
-				//count++;
-				minEdge.mark(true); // mark visited edge
-				int v = minEdge.getV();
-				if(mst.getNode(v) == null) // if node not added to MST yet, add node.
-					mst.addNode(v, g2.getNode(v));
-				mst.addEdge(minEdge);
-				nrOfVertices = nrOfVertices - 2; // 2 visited nodes.
-			}
+		Edge[] edges = getSortedEdges(g2);
+
+		// Adds a new disjoint set detached from other sets for all nodes.
+		DisjointSet djSet = new DisjointSet();
+		for(TypedNode n : g2.getNodes()) { 
+			djSet.makeSet(n);    
 		}
-		//System.out.println("Added edge " + count);
+		
+		// Go through all sorted edges and merge-find the nodes in the disjointed sets.
+		int i = 0;
+		while(i < edges.length) { 
+			Edge minEdge = edges[i];
+			int v = minEdge.getV();
+			int w = minEdge.getW();
+			TypedNode vNode = g2.getNode(v);
+			TypedNode wNode = g2.getNode(w);
+			// if disjointed sets, add nodes and edge to MST and merge the sets.
+			if(djSet.findSet(vNode) != djSet.findSet(wNode)) {
+				if(mst.getNode(v) == null) { mst.addNode(v, vNode); }
+				if(mst.getNode(w) == null) { mst.addNode(w, wNode); }
+				mst.addEdge(minEdge);
+				djSet.union(vNode, wNode);
+			} 
+			i++;
+		}
 		return mst;
-		*/
-		return null;
 	}
 	
+	/**
+	 * get all edges from EdgeWeightedGraph and sort them increasingly by weight.
+	 * @param g
+	 */
 	public static Edge[] getSortedEdges(EdgeWeightedGraph g) {
 		ArrayList<Edge> edges = new ArrayList<Edge>();
 		for(int i=0; i < g.nrOfVertices(); i++) {

@@ -21,6 +21,7 @@ public class EdgeWeightedGraph extends Graph {
         int v = e.getV();
         //int w = e.getW();  //NECESSARY?
         adjE[v].add(e);
+        //System.out.println(v + ": " + adjE[v].size());
         nrOfEdges++;
     }
 

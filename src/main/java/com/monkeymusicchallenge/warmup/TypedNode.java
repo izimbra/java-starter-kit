@@ -7,21 +7,21 @@ import java.util.LinkedList;
  */
 public class TypedNode {
     private int x, y;
-    private boolean marked; 
+    private boolean visited; 
     private int type;
 
     public TypedNode (int x, int y, int type) {
         this.x = x;
         this.y = y;
-        this.marked = false;
+        this.visited = false;
         this.type = type;
     }
 
     public int getX() { return x; }
     public int getY() { return y; }
     public int getType() { return type; }   
-    public void mark(boolean mark) { this.marked = mark; }    
-    public boolean marked() { return this.marked; }
+    public void visit(boolean mark) { this.visited = mark; }    
+    public boolean visited() { return this.visited; }
     
     public TypedNode clone() {
     	return new TypedNode(this.x, this.y, this.type);

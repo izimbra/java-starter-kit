@@ -113,19 +113,34 @@ public class GraphManagerTest {
     
     @Test
     public void minimumSpanningTree() {
-    	// degree < 3 and > 0 on all nodes
-    	TypedNode[] nodes = mst.getNodes();
-    	boolean correctDegree = true;
-    	for(int i=0; i < nodes.length; i++) {
-    		int deg = mst.adj(i).size();
-    		if(deg < 1 || deg > 2) {
-    			//System.out.println(deg);
-    			correctDegree = false;
-    		} else {
-    			System.out.println(deg);
-    		}
-    	}
-    	assertTrue(correctDegree);
+    	LinkedList<Edge> list0 = mst.adjEdges(0);
+    	Edge e0_1 = list0.get(0);
+    	Edge e0_3 = list0.get(1);
+    	assertEquals(0, e0_1.getV()); assertEquals(1, e0_1.getW());
+    	assertEquals(0, e0_3.getV()); assertEquals(3, e0_3.getW());
+   
+    	LinkedList<Edge> list1 = mst.adjEdges(1);
+    	assertEquals(0, list1.size());
+
+       	LinkedList<Edge> list2 = mst.adjEdges(2);
+    	Edge e2_3 = list2.get(0);
+    	assertEquals(2, e2_3.getV()); assertEquals(3, e2_3.getW());
+    	
+    	LinkedList<Edge> list3 = mst.adjEdges(3);
+    	Edge e3_6 = list3.get(0);
+    	Edge e3_5 = list3.get(1);
+    	assertEquals(3, e3_6.getV()); assertEquals(6, e3_6.getW());
+    	assertEquals(3, e3_5.getV()); assertEquals(5, e3_5.getW());
+    	
+       	LinkedList<Edge> list4 = mst.adjEdges(4);
+    	Edge e4_5 = list4.get(0);
+    	assertEquals(4, e4_5.getV()); assertEquals(5, e4_5.getW());
+    	
+    	LinkedList<Edge> list5 = mst.adjEdges(5);
+    	assertEquals(0, list5.size());
+    	
+    	LinkedList<Edge> list6 = mst.adjEdges(6);
+    	assertEquals(0, list6.size()); 	
     }
     
     @Test
