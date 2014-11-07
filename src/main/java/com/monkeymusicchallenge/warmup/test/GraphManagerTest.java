@@ -119,17 +119,28 @@ public class GraphManagerTest {
     	for(int i=0; i < nodes.length; i++) {
     		int deg = mst.adj(i).size();
     		if(deg < 1 || deg > 2) {
-    			System.out.println(deg);
+    			//System.out.println(deg);
     			correctDegree = false;
+    		} else {
+    			System.out.println(deg);
     		}
     	}
     	assertTrue(correctDegree);
     }
     
     @Test
-    public void getAllEdges() {
-    	Edge[] edges = GraphManager.getAllEdges(g2);
+    public void getSortedEdges() {
+    	Edge[] edges = GraphManager.getSortedEdges(g2);
         assertEquals(42, edges.length);
+        boolean sorted = true;
+        Edge min = edges[0];
+        for(Edge e : edges) {
+        	if(min.getWeight() > e.getWeight()) {
+        		sorted = false;
+        	}
+        	min = e;
+        }
+        assertTrue(sorted);
     }
 
 

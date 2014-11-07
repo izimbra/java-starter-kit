@@ -4,6 +4,9 @@ import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -100,20 +103,22 @@ public class GraphManager {
 	}
 	
 	/**
-	 * finds and returns the minimum spanning tree in g2
+	 * Finds and returns the minimum spanning tree in g2
 	 * @param g2
 	 */
 	public static EdgeWeightedGraph minimumSpanningTree(EdgeWeightedGraph g2) {
-		int nrOfVertices = g2.nrOfVertices();
+		/*int nrOfVertices = g2.nrOfVertices();
 		EdgeWeightedGraph mst = new EdgeWeightedGraph(nrOfVertices);
-		Edge[] edges = getAllEdges(g2);
+		Edge[] edges = getSortedEdges(g2);
 		// Add all minimum edges (Kruskal-style)
 		boolean completeMST = false;
+		// testing purposes
+		//int count = 0;
 		while(!completeMST) { 
 			int min = Integer.MAX_VALUE;
 			Edge minEdge = null;
-			for(int j=0; j < edges.length; j++) {
-				Edge e = edges[j];
+			for(int i=0; i < edges.length; i++) {
+				Edge e = edges[i];
 				int v = e.getV(); 
 				if(!e.marked() &&            // 1. Edge is not already included,
 					e.getWeight() < min &&   // 2. Edge is smaller than all previous,
@@ -121,26 +126,37 @@ public class GraphManager {
 					minEdge = e;
 				}
 			}
-			if(minEdge == null) {
+			if(minEdge == null || nrOfVertices == 0) {
 				completeMST = true; // the MST is complete! => break while loop.
 			} else {
+				//count++;
 				minEdge.mark(true); // mark visited edge
 				int v = minEdge.getV();
 				if(mst.getNode(v) == null) // if node not added to MST yet, add node.
 					mst.addNode(v, g2.getNode(v));
 				mst.addEdge(minEdge);
+				nrOfVertices = nrOfVertices - 2; // 2 visited nodes.
 			}
 		}
+		//System.out.println("Added edge " + count);
 		return mst;
+		*/
+		return null;
 	}
 	
-	public static Edge[] getAllEdges(EdgeWeightedGraph g) {
+	public static Edge[] getSortedEdges(EdgeWeightedGraph g) {
 		ArrayList<Edge> edges = new ArrayList<Edge>();
 		for(int i=0; i < g.nrOfVertices(); i++) {
 			for(Edge e : g.adjEdges(i)) {
 				edges.add(e);
 			}
 		}
+		// sort the edges in increasing order.
+		Collections.sort(edges, new Comparator<Edge>() {
+			public int compare(Edge e1, Edge e2) {
+		        return Integer.valueOf(e1.getWeight()).compareTo(e2.getWeight());
+		    }
+		}); 
 		return edges.toArray(new Edge[edges.size()]);
 	}
 
