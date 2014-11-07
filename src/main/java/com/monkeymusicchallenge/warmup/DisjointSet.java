@@ -7,6 +7,8 @@
  *
  * Contributors:
  *     IBM Corporation - initial API and implementation
+ *     
+ * Source: http://alvinalexander.com/java/jwarehouse/eclipse/org.eclipse.ui.ide/src/org/eclipse/ui/internal/ide/misc/DisjointSet.java.shtml
  ******************************************************************************/
 
 package com.monkeymusicchallenge.warmup;
